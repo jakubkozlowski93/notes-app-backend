@@ -1,11 +1,6 @@
 const jwt = require('jsonwebtoken')
-
+const users = require('./../db/db')
 const ACCESS_TOKEN = 'ndkqnj32or23523bj2fu2f23nfi2n1'
-
-const users = [
-  { login: 'Kuba', password: 'test123' },
-  { login: 'Adam', password: 'test456' },
-]
 
 class Actions {
   getAdmin(req, res) {
@@ -27,7 +22,6 @@ class Actions {
 
   async getLogin(req, res) {
     const user = await users.find((u) => u.login === req.body.login)
-    const password = await users.find((u) => u.password === req.body.password)
     if (!user) {
       return res.sendStatus(401)
     }
@@ -35,6 +29,8 @@ class Actions {
       const payload = user
       const token = jwt.sign(payload, ACCESS_TOKEN)
       res.json({ token })
+    } else {
+      return res.sendStatus(401)
     }
   }
 }
