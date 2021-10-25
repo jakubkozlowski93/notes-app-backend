@@ -2,10 +2,7 @@ const jwt = require('jsonwebtoken')
 // const users = require('./../db/db')
 const ACCESS_TOKEN = 'ndkqnj32or23523bj2fu2f23nfi2n1'
 
-const users = [
-  { login: 'Kuba', password: 'test123' },
-  { login: 'Adam', password: 'test456' },
-]
+const users = [{ login: 'Admin', password: 'test123' }]
 
 class Actions {
   getAdmin(req, res) {
